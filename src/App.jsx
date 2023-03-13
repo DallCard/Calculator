@@ -49,11 +49,30 @@ const handleButtonClick = () => {
     setScreen(`${screen}9`) 
 
   } 
+
 }
+const handleButtonClick8 = () => {
+  if (screen === '0'){
+    
+    setScreen(8)
 
+  }else{
+    setScreen(`${screen}8`) 
 
+  } 
 
+}
+const handleButtonClick7 = () => {
+  if (screen === '0'){
+    
+    setScreen(7)
 
+  }else{
+    setScreen(`${screen}7`) 
+
+  } 
+
+}
 
 
   return (
@@ -109,6 +128,8 @@ const handleButtonClick = () => {
         <button 
         type="button"
         className={buttonsClasses}
+        onClick={handleButtonClick7}
+
         > 7 </button>
          </td>
 
@@ -117,6 +138,7 @@ const handleButtonClick = () => {
         <button 
         type="button" 
         className={buttonsClasses}
+        onClick={handleButtonClick8}
         > 8 </button>
          </td>
 
