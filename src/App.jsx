@@ -40,18 +40,25 @@ function App () {
 
 const [screen, setScreen] = useState('0') 
 
-const handleButtonClick = () => {
-  if (screen === '0'){
-    
-    setScreen(9)
+const handleButtonClick = (e) => {
+  const value = e.target.value;
+  //const {value} = e.target;  esta seria otra forma de escribir la funcion anteriro 
+  if (value === 'C'){
+    setScreen('0');
+    return;
+  }
+  //console.log(e);
+ if (screen === '0'){
+   setScreen(value)
 
   }else{
-    setScreen(`${screen}9`) 
+  setScreen(`${screen}${value}`) 
 
-  } 
+ } 
 
 }
-const handleButtonClick8 = () => {
+
+/*const handleButtonClick8 = () => {
   if (screen === '0'){
     
     setScreen(8)
@@ -72,7 +79,7 @@ const handleButtonClick7 = () => {
 
   } 
 
-}
+}*/
 
 
   return (
@@ -96,7 +103,10 @@ const handleButtonClick7 = () => {
         <td >
           <button 
           type='button'
-          className={buttonsClasses}> C </button> 
+          className={buttonsClasses}
+          value="C"
+        onClick={(e) => handleButtonClick (e)}
+          > C </button> 
           </td>
           
         <td >
@@ -128,7 +138,11 @@ const handleButtonClick7 = () => {
         <button 
         type="button"
         className={buttonsClasses}
-        onClick={handleButtonClick7}
+        //es parra que funciones el boton 7
+        //se lle agrefo los parentesis
+        //onClick={() => handleButtonClick ('7')}
+        value="7"
+        onClick={(e) => handleButtonClick (e)}
 
         > 7 </button>
          </td>
@@ -138,7 +152,8 @@ const handleButtonClick7 = () => {
         <button 
         type="button" 
         className={buttonsClasses}
-        onClick={handleButtonClick8}
+        value="8"
+        onClick={(e) => handleButtonClick (e)}
         > 8 </button>
          </td>
 
@@ -147,7 +162,9 @@ const handleButtonClick7 = () => {
         <button 
         type="button" 
         className={buttonsClasses}
-        onClick={handleButtonClick}
+        value="9"
+        onClick={(e) => handleButtonClick (e)}
+        
         > 9 </button>
          </td>
 
@@ -163,15 +180,24 @@ const handleButtonClick7 = () => {
       <tr>
       <td >
         <button 
-        type='button' className={buttonsClasses}> 4 </button>
+        type='button' className={buttonsClasses}
+        value="4"
+        onClick={(e) => handleButtonClick (e)}
+        > 4 </button>
          </td>
          <td >
         <button 
-        type='button' className={buttonsClasses}> 5 </button>
+        type='button' className={buttonsClasses}
+        value="5"
+        onClick={(e) => handleButtonClick (e)}
+        > 5 </button>
          </td>
          <td >
         <button 
-        type='button' className={buttonsClasses}> 6 </button>
+        type='button' className={buttonsClasses}
+        value="6"
+        onClick={(e) => handleButtonClick (e)}
+        > 6 </button>
          </td>
  
         </tr>  
@@ -183,15 +209,24 @@ const handleButtonClick7 = () => {
       <tr>
       <td >
         <button 
-        type='button' className={buttonsClasses}> 1 </button>
+        type='button' className={buttonsClasses}
+        value="1"
+        onClick={(e) => handleButtonClick (e)}
+        > 1 </button>
          </td>
          <td >
         <button 
-        type='button' className={buttonsClasses}> 2 </button>
+        type='button' className={buttonsClasses}
+        value="2"
+        onClick={(e) => handleButtonClick (e)}
+        > 2 </button>
          </td>
          <td >
         <button 
-        type='button' className={buttonsClasses}> 3 </button>
+        type='button' className={buttonsClasses}
+        value="3"
+        onClick={(e) => handleButtonClick (e)}
+        > 3 </button>
          </td>
 
         <td rowSpan={2}> <button 
@@ -209,6 +244,8 @@ const handleButtonClick7 = () => {
         <td >  <button 
         type='button' 
         className={buttonsClasses}
+        value="0"
+        onClick={(e) => handleButtonClick (e)}
         > 0 </button> </td>
 
         <td >
