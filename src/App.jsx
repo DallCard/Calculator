@@ -41,22 +41,43 @@ function App () {
 const [screen, setScreen] = useState('0') 
 
 const handleButtonClick = (e) => {
-  const value = e.target.value;
+  const {value} = e.target;
+  if (value === '.'){
+   // if  (screen.indexOf(value) !== -1) return;   esta funcion es otra forma de que el punto solo aprezca una vez 
+    if  (screen.includes('.')) return;
+
+  }
   //const {value} = e.target;  esta seria otra forma de escribir la funcion anteriro 
   if (value === 'C'){
     setScreen('0');
     return;
   }
   //console.log(e);
- if (screen === '0'){
-   setScreen(value)
 
+
+ if (screen === '0' && value !== '.'){ // && value !== '.' esta funcion es para que el cero se mantenga antes del puento, cuando este se predione 
+   setScreen(value)
+  return;
   }else{
   setScreen(`${screen}${value}`) 
 
+  
  } 
+ 
+}
+const handleDelButtonClick = () =>{ /* esta funcion sera para eliminar la un numero */
+if (screen.length === 1){
+  setScreen('0');
+  return;
+}else{
+  
+setScreen(screen.slice(0, -1));
+}
+
 
 }
+
+
 
 /*const handleButtonClick8 = () => {
   if (screen === '0'){
@@ -238,7 +259,9 @@ const handleButtonClick7 = () => {
         {/*sixth row*/}
         <tr>
         <td> <button 
-        type='button' className={buttonsClasses}> DEL </button> 
+        type='button' className={buttonsClasses}
+        onClick={handleDelButtonClick}
+        > DEL </button> 
         </td>
 
         <td >  <button 
@@ -250,7 +273,10 @@ const handleButtonClick7 = () => {
 
         <td >
         <button 
-        type='button' className={buttonsClasses}> . </button>
+        type='button' className={buttonsClasses}
+        value="."
+        onClick={(e) => handleButtonClick (e)}
+        > . </button>
          </td>
       
         
