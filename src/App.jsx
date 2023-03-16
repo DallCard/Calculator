@@ -37,8 +37,14 @@ import './App.css'
 const buttonsClasses = "btn btn-primary w-75";
 
 function App () {
+  //let number1= 0;
+  
 
-const [screen, setScreen] = useState('0') 
+const [number1, setNumber1] = useState('');
+const [clearScreen, setClearScreen] = useState(false);
+const [screen, setScreen] = useState('0');
+
+
 
 const handleButtonClick = (e) => {
   const {value} = e.target;
@@ -53,15 +59,22 @@ const handleButtonClick = (e) => {
     return;
   }
   //console.log(e);
+//!===============================================================================
+  console.log({number1});
 
-
+if (clearScreen){
+  setScreen(value);
+  console.log('cambia el screen');
+  setScreen(value);
+  setClearScreen(false);
+  return;
+}
  if (screen === '0' && value !== '.'){ // && value !== '.' esta funcion es para que el cero se mantenga antes del puento, cuando este se predione 
    setScreen(value)
   return;
   }else{
   setScreen(`${screen}${value}`) 
 
-  
  } 
  
 }
@@ -74,7 +87,19 @@ if (screen.length === 1){
 setScreen(screen.slice(0, -1));
 }
 
-
+}
+const handleOperationButtonClick =(e) =>{
+const operator = e.target.value;
+switch (operator){
+  case '+':
+    setNumber1(screen);
+    //number1 (screen);
+    console.log('Suma')
+    break;
+    default:
+      break;
+}
+setClearScreen(true);
 }
 
 
@@ -194,6 +219,8 @@ const handleButtonClick7 = () => {
         type='button' 
         className={buttonsClasses}
         style={{height: "80px"}} 
+        value= "+"
+        onClick={(e)=> handleOperationButtonClick(e)}
         > + </button> </td>
         </tr>  
 
