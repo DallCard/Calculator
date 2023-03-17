@@ -40,6 +40,7 @@ function App () {
   //let number1= 0;
   
 
+const [operator, setOperator] = useState('');
 const [number1, setNumber1] = useState('');
 const [clearScreen, setClearScreen] = useState(false);
 const [screen, setScreen] = useState('0');
@@ -60,11 +61,11 @@ const handleButtonClick = (e) => {
   }
   //console.log(e);
 //!===============================================================================
-  console.log({number1});
+  //console.log({number1});
 
 if (clearScreen){
   setScreen(value);
-  console.log('cambia el screen');
+  //console.log('cambia el screen');
   setScreen(value);
   setClearScreen(false);
   return;
@@ -89,17 +90,22 @@ setScreen(screen.slice(0, -1));
 
 }
 const handleOperationButtonClick =(e) =>{
-const operator = e.target.value;
-switch (operator){
-  case '+':
-    setNumber1(screen);
-    //number1 (screen);
-    console.log('Suma')
-    break;
-    default:
-      break;
-}
+setOperator(e.target.value);
+setNumber1(screen);
 setClearScreen(true);
+}
+
+const handleEquaButtonClick = () => {
+  const a= +number1;
+  const b= +screen;
+  switch (operator){
+    case '+':
+      setScreen((a + b).toString());
+     // console.log('Suma')
+      break;
+      default:
+        break;
+  }
 }
 
 
@@ -280,6 +286,7 @@ const handleButtonClick7 = () => {
         <td rowSpan={2}> <button 
         type='button' className={buttonsClasses} 
         style={{height: "80px"}}
+        onClick={handleEquaButtonClick}
         > = </button> </td>
         </tr>  
 
