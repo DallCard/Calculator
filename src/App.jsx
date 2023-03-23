@@ -1,39 +1,6 @@
-/* import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}*/
-
 import { useState } from 'react'
 import './App.css'
-
+import Button from './components/button';
 const buttonsClasses = "btn btn-primary w-75";
 
 function App () {
@@ -95,19 +62,168 @@ setNumber1(screen);
 setClearScreen(true);
 }
 
-const handleEquaButtonClick = () => {
+const handleEqualButtonClick = () => {
   const a= +number1;
   const b= +screen;
   switch (operator){
     case '+':
       setScreen((a + b).toString());
-     // console.log('Suma')
+      break;
+      case '-':
+      setScreen((a - b).toString());
+      break;
+      case '*':
+      setScreen((a * b).toString());
+      break;
+      case '/':
+      setScreen((a / b).toString());
       break;
       default:
         break;
   }
 }
 
+
+const buttonsInfo = [
+  [{
+    classes: buttonsClasses,
+    value: 'C',
+    handleClick: handleOperationButtonClick,
+    style: {},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value: '/',
+    handleClick: handleOperationButtonClick,
+    style: {},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value: '*',
+    handleClick: handleOperationButtonClick,
+    style: {},
+    rows:1
+  },
+
+  {
+    classes: buttonsClasses,
+    value:'-',
+    handleClick: handleOperationButtonClick,
+    style:{},
+    rows:1
+  }
+],
+[
+  {
+    classes: buttonsClasses,
+    value:'7',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'8',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'9',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'+',
+    handleClick: handleOperationButtonClick,
+    style:{height:"80px"},
+    rows:2
+  },
+],
+[
+  {
+    classes: buttonsClasses,
+    value:'4',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'5',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'6',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+
+],
+[
+  {
+    classes: buttonsClasses,
+    value:'1',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'2',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'3',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'=',
+    handleClick: handleEqualButtonClick,
+    style:{height: "80px"},
+    rows:2
+  },
+
+],
+[
+  {
+    classes: buttonsClasses,
+    value:'DEL',
+    handleClick: handleDelButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'0',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+  {
+    classes: buttonsClasses,
+    value:'.',
+    handleClick: handleButtonClick,
+    style:{},
+    rows:1
+  },
+],
+]
 
 
 /*const handleButtonClick8 = () => {
@@ -151,171 +267,30 @@ const handleButtonClick7 = () => {
       
       </tr>  
       {/*Second row*/}
-     <tr>
-        <td >
-          <button 
-          type='button'
-          className={buttonsClasses}
-          value="C"
-        onClick={(e) => handleButtonClick (e)}
-          > C </button> 
-          </td>
-          
-        <td >
-          <button 
-        type='button' 
-        className={buttonsClasses}> / </button>
-         </td>
-
-        <td >
-         <button 
-        type='button' 
-        className={buttonsClasses}> * </button>
-         </td>
-         
-        <td >
-         <button 
-        type='button' 
-        className={buttonsClasses}
-        > - </button>
-         </td>
-
-        </tr>  
-
-      {/*third row*/}
+     {
+      buttonsInfo.map((row)=>{
+        return(
+          <tr>
+            {
+              row.map((cell)=>{
+                return(
+                  <td rowSpan={cell.rows}>
+                    <Button
+                    classes={cell.classes}
+                    value={cell.value}
+                    handleClick={cell.handleClick}
+                    style={cell.style}
+                    />
 
 
-     <tr>
-      <td >
-        <button 
-        type="button"
-        className={buttonsClasses}
-        //es parra que funciones el boton 7
-        //se lle agrefo los parentesis
-        //onClick={() => handleButtonClick ('7')}
-        value="7"
-        onClick={(e) => handleButtonClick (e)}
-
-        > 7 </button>
-         </td>
-
-
-         <td >
-        <button 
-        type="button" 
-        className={buttonsClasses}
-        value="8"
-        onClick={(e) => handleButtonClick (e)}
-        > 8 </button>
-         </td>
-
-
-         <td >
-        <button 
-        type="button" 
-        className={buttonsClasses}
-        value="9"
-        onClick={(e) => handleButtonClick (e)}
-        
-        > 9 </button>
-         </td>
-
-        <td rowSpan={2}>  
-        <button 
-        type='button' 
-        className={buttonsClasses}
-        style={{height: "80px"}} 
-        value= "+"
-        onClick={(e)=> handleOperationButtonClick(e)}
-        > + </button> </td>
-        </tr>  
-
-        {/*Fourth row*/}
-      <tr>
-      <td >
-        <button 
-        type='button' className={buttonsClasses}
-        value="4"
-        onClick={(e) => handleButtonClick (e)}
-        > 4 </button>
-         </td>
-         <td >
-        <button 
-        type='button' className={buttonsClasses}
-        value="5"
-        onClick={(e) => handleButtonClick (e)}
-        > 5 </button>
-         </td>
-         <td >
-        <button 
-        type='button' className={buttonsClasses}
-        value="6"
-        onClick={(e) => handleButtonClick (e)}
-        > 6 </button>
-         </td>
- 
-        </tr>  
-
-
-        {/*Fifth row*/}
-
-
-      <tr>
-      <td >
-        <button 
-        type='button' className={buttonsClasses}
-        value="1"
-        onClick={(e) => handleButtonClick (e)}
-        > 1 </button>
-         </td>
-         <td >
-        <button 
-        type='button' className={buttonsClasses}
-        value="2"
-        onClick={(e) => handleButtonClick (e)}
-        > 2 </button>
-         </td>
-         <td >
-        <button 
-        type='button' className={buttonsClasses}
-        value="3"
-        onClick={(e) => handleButtonClick (e)}
-        > 3 </button>
-         </td>
-
-        <td rowSpan={2}> <button 
-        type='button' className={buttonsClasses} 
-        style={{height: "80px"}}
-        onClick={handleEquaButtonClick}
-        > = </button> </td>
-        </tr>  
-
-        {/*sixth row*/}
-        <tr>
-        <td> <button 
-        type='button' className={buttonsClasses}
-        onClick={handleDelButtonClick}
-        > DEL </button> 
-        </td>
-
-        <td >  <button 
-        type='button' 
-        className={buttonsClasses}
-        value="0"
-        onClick={(e) => handleButtonClick (e)}
-        > 0 </button> </td>
-
-        <td >
-        <button 
-        type='button' className={buttonsClasses}
-        value="."
-        onClick={(e) => handleButtonClick (e)}
-        > . </button>
-         </td>
-      
-        
-        </tr>   
-         
+                  </td>
+                )
+              })
+            }
+          </tr>
+        )
+      })
+     }         
     </table>
     </div>
   )
